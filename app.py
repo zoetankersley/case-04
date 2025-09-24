@@ -9,6 +9,15 @@ app = Flask(__name__)
 # Allow cross-origin requests so the static HTML can POST from localhost or file://
 CORS(app, resources={r"/v1/*": {"origins": "*"}})
 
+@app.route("/ping", methods=["GET"])
+def ping():
+    """Simple health check endpoint."""
+    return jsonify({
+        "status": "ok",
+        "message": "API is alive",
+        "utc_time": datetime.now(timezone.utc).isoformat()
+    })
+
 @app.post("/v1/survey")
 def submit_survey():
     payload = request.get_json(silent=True)
