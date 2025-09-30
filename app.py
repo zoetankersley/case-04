@@ -1,4 +1,5 @@
 from datetime import datetime, timezone
+import hashlib
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from pydantic import ValidationError
@@ -50,4 +51,4 @@ def submit_survey():
     return jsonify({"status": "ok"}), 201
 
 if __name__ == "__main__":
-    app.run(port=45393, debug=True)
+    app.run(port=5000, debug=True)
